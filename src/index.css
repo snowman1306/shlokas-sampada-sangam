@@ -8,45 +8,45 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 45 20% 96%;
-    --foreground: 25 30% 15%;
+    --background: 48 85% 87%;
+    --foreground: 17 66% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 25 30% 15%;
+    --card-foreground: 17 66% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 25 30% 15%;
+    --popover-foreground: 17 66% 20%;
 
-    /* Deep green for agriculture */
-    --primary: 142 65% 28%;
+    /* Deep terracotta clay */
+    --primary: 17 66% 47%;
     --primary-foreground: 0 0% 100%;
 
-    /* Warm saffron/orange for culture */
-    --secondary: 28 85% 55%;
-    --secondary-foreground: 0 0% 100%;
+    /* Earthy beige */
+    --secondary: 41 60% 71%;
+    --secondary-foreground: 17 66% 20%;
 
-    --muted: 45 15% 88%;
-    --muted-foreground: 25 20% 45%;
+    --muted: 41 40% 85%;
+    --muted-foreground: 17 40% 40%;
 
-    /* Earth brown accent */
-    --accent: 30 45% 45%;
+    /* Clay accent */
+    --accent: 17 66% 47%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 45 20% 85%;
-    --input: 45 20% 90%;
-    --ring: 142 65% 28%;
+    --border: 41 30% 80%;
+    --input: 41 30% 90%;
+    --ring: 17 66% 47%;
 
     --radius: 0.75rem;
 
-    /* Natural gradient colors */
-    --gradient-start: 142 65% 35%;
-    --gradient-end: 28 85% 55%;
+    /* Clay gradient colors */
+    --gradient-start: 17 66% 47%;
+    --gradient-end: 41 60% 71%;
     
     /* Cultural accent */
-    --cultural: 28 85% 55%;
+    --cultural: 17 66% 47%;
     --cultural-foreground: 0 0% 100%;
 
     --sidebar-background: 45 25% 94%;
@@ -60,39 +60,39 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 25 25% 12%;
-    --foreground: 45 15% 92%;
+    --background: 17 30% 12%;
+    --foreground: 48 60% 88%;
 
-    --card: 25 20% 16%;
-    --card-foreground: 45 15% 92%;
+    --card: 17 25% 16%;
+    --card-foreground: 48 60% 88%;
 
-    --popover: 25 20% 16%;
-    --popover-foreground: 45 15% 92%;
+    --popover: 17 25% 16%;
+    --popover-foreground: 48 60% 88%;
 
-    --primary: 142 60% 38%;
+    --primary: 17 66% 47%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 28 80% 60%;
-    --secondary-foreground: 25 25% 12%;
+    --secondary: 41 60% 71%;
+    --secondary-foreground: 17 30% 12%;
 
-    --muted: 25 15% 22%;
-    --muted-foreground: 45 10% 65%;
+    --muted: 17 20% 22%;
+    --muted-foreground: 41 20% 65%;
 
-    --accent: 30 40% 50%;
+    --accent: 17 66% 47%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 25 15% 25%;
-    --input: 25 15% 25%;
-    --ring: 142 60% 45%;
+    --border: 17 20% 25%;
+    --input: 17 20% 25%;
+    --ring: 17 66% 47%;
 
-    --gradient-start: 142 60% 30%;
-    --gradient-end: 28 80% 50%;
+    --gradient-start: 17 66% 40%;
+    --gradient-end: 41 60% 65%;
     
-    --cultural: 28 80% 60%;
-    --cultural-foreground: 25 25% 12%;
+    --cultural: 17 66% 47%;
+    --cultural-foreground: 0 0% 100%;
 
     --sidebar-background: 25 25% 10%;
     --sidebar-foreground: 45 15% 88%;

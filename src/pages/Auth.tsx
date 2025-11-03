@@ -78,26 +78,40 @@ const Auth = () => {
             </TabsContent>
           </Tabs>
 
-          {/* Footer Links */}
-          <div className="flex justify-center gap-4 mt-6 pt-6 border-t">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <Shield className="h-4 w-4" />
-              Privacy
-            </Button>
-            <Button variant="ghost" size="sm" className="gap-2">
-              <HelpCircle className="h-4 w-4" />
-              Help
-            </Button>
-          </div>
+          {/* Help Resources */}
+          <div className="mt-6 pt-6 border-t space-y-4">
+            <div className="bg-secondary/20 rounded-lg p-4">
+              <h3 className="font-semibold mb-3 text-center">
+                📚 सहायता संसाधन / Help Resources
+              </h3>
+              <div className="grid grid-cols-2 gap-2">
+                <Button variant="outline" size="sm" className="gap-2 h-auto py-3 flex-col">
+                  <Shield className="h-5 w-5" />
+                  <span className="text-xs">Privacy / गोपनीयता</span>
+                </Button>
+                <Button variant="outline" size="sm" className="gap-2 h-auto py-3 flex-col">
+                  <HelpCircle className="h-5 w-5" />
+                  <span className="text-xs">FAQs / प्रश्न</span>
+                </Button>
+              </div>
+            </div>
 
-          {/* Email Guide Link */}
-          <div className="text-center mt-4">
-            <p className="text-sm text-muted-foreground mb-2">
-              ईमेल कैसे बनाएं? / How to create email?
-            </p>
-            <Button variant="link" className="text-primary">
-              गाइड देखें / View Guide
-            </Button>
+            {/* Email Guide Link */}
+            <div className="bg-primary/10 rounded-lg p-4 text-center">
+              <p className="text-sm font-medium mb-2">
+                ईमेल कैसे बनाएं? / How to create email?
+              </p>
+              <Button variant="default" size="sm" className="w-full">
+                📖 गाइड देखें / View Guide
+              </Button>
+            </div>
+
+            {/* Contact Support */}
+            <div className="text-center">
+              <Button variant="link" className="text-primary gap-2">
+                📞 सहायता के लिए संपर्क करें / Contact for Help
+              </Button>
+            </div>
           </div>
         </Card>
       </div>
