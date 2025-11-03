@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { chatAPI } from '@/integrations/supabase/api';
 import { openAIService } from '@/lib/openai-service';
+import { useNavigate } from "react-router-dom";
 
 interface MessageType {
   content: string;
@@ -16,6 +17,7 @@ import { categoryAPI, shlokaAPI, translationAPI, policyAPI } from '@/integration
 
 const Dashboard = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [assistantInput, setAssistantInput] = useState("");
     const [messages, setMessages] = useState<MessageType[]>([
     { content: "Hello! I am your AI assistant. How can I help you today?", role: "assistant" },
@@ -87,7 +89,15 @@ const Dashboard = () => {
                 <h1 className="text-xl font-bold">{t("dashboard.title")}</h1>
               </div>
           </div>
-          <LanguageSelector />
+          <div className="flex items-center gap-4">
+            <Button 
+              variant="outline" 
+              onClick={() => navigate("/")}
+            >
+              Logout
+            </Button>
+            <LanguageSelector />
+          </div>
         </div>
       </header>
 
