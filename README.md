@@ -1,73 +1,47 @@
-# Welcome to your Lovable project
+Summary:
 
-## Project info
+KissanSeva is a basic web platform made in a four-hour hackathon. Its goal is to give farmers in rural India access to important farming details. The site is inspired by old sayings that promote understanding and good leadership. It gives weather updates, crop advice, policy info, and learning materials in Hindi and English.
 
-**URL**: https://lovable.dev/projects/93f56d22-0590-48fd-9c86-8bec546456be
+Main Parts:
 
-## How can I edit this code?
+Users can switch between Hindi and English.
 
-There are several ways of editing your application.
+It’s easy to sign up and log in using email.
 
-**Use Lovable**
+The AI helps farmers by answering questions in their chosen language via voice, text, or images.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/93f56d22-0590-48fd-9c86-8bec546456be) and start prompting.
+It gives current weather warnings for specific areas with pictures.
 
-Changes made via Lovable will be committed automatically to this repo.
+It offers useful crop advice based on the season with images.
 
-**Use your preferred IDE**
+It shares local government policy and education details for each user.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+It includes user guides to make it easier to use.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Tech Used:
 
-Follow these steps:
+React.js is used for the site's look, with colors inspired by earth tones.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Node.js/Express is used for the behind-the-scenes work, hosted on free cloud services.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+It uses Google Search and OpenWeatherMap APIs.
 
-# Step 3: Install the necessary dependencies.
-npm i
+The site changes the language of the content based on what the user picks.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+How It Was Made:
 
-**Edit a file directly in GitHub**
+Hour 1: Planned features based on sayings that focus on data and good design.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Hour 2: Made the behind-the-scenes APIs for different kinds of inputs and outside API use.
 
-**Use GitHub Codespaces**
+Hour 3: Created the site design with language options, AI, and info areas.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Hour 4: Put everything together, tested it, improved the design, and put it online.
 
-## What technologies are used for this project?
+Sayings Used:
 
-This project is built with:
+Shloka 24 : The saying that promotes understanding guided the behind-the-scenes design and AI use.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Shloka 8 : The saying about good leadership inspired the easy and ethical site design.
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/93f56d22-0590-48fd-9c86-8bec546456be) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+KissanSeva shows how old values and tech can help farming communities
