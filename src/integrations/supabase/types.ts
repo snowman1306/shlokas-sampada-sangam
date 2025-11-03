@@ -40,13 +40,164 @@ export type Database = {
           state?: string | null
         }
         Relationships: []
+      },
+      shlokas: {
+        Row: {
+          id: string;
+          text: string;
+          transliteration?: string | null;
+          meaning?: string | null;
+          source?: string | null;
+          category_id?: string | null;
+          created_by: string;
+          is_public: boolean;
+          created_at?: string | null;
+        };
+        Insert: {
+          id?: string;
+          text: string;
+          transliteration?: string | null;
+          meaning?: string | null;
+          source?: string | null;
+          category_id?: string | null;
+          created_by: string;
+          is_public?: boolean;
+          created_at?: string | null;
+        };
+        Update: Partial<Omit<Database["public"]["Tables"]["shlokas"]["Row"], "id">> & { id: string };
+        Relationships: [];
+      },
+      categories: {
+        Row: {
+          id: string;
+          name: string;
+          description?: string | null;
+          created_by: string;
+          created_at?: string | null;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          description?: string | null;
+          created_by: string;
+          created_at?: string | null;
+        };
+        Update: Partial<Omit<Database["public"]["Tables"]["categories"]["Row"], "id">> & { id: string };
+        Relationships: [];
+      },
+      translations: {
+        Row: {
+          id: string;
+          shloka_id: string;
+          language: string;
+          translation: string;
+          created_by: string;
+          created_at?: string | null;
+        };
+        Insert: {
+          id?: string;
+          shloka_id: string;
+          language: string;
+          translation: string;
+          created_by: string;
+          created_at?: string | null;
+        };
+        Update: Partial<Omit<Database["public"]["Tables"]["translations"]["Row"], "id">> & { id: string };
+        Relationships: [];
+      },
+      weather_data: {
+        Row: {
+          id: string;
+          city: string;
+          temperature: number;
+          conditions: string;
+          humidity: number;
+          wind_speed: number;
+          created_at?: string | null;
+        };
+        Insert: {
+          id?: string;
+          city: string;
+          temperature: number;
+          conditions: string;
+          humidity: number;
+          wind_speed: number;
+          created_at?: string | null;
+        };
+        Update: Partial<Omit<Database["public"]["Tables"]["weather_data"]["Row"], "id">> & { id: string };
+        Relationships: [];
+      },
+      government_policies: {
+        Row: {
+          id: string;
+          title: string;
+          description: string;
+          language: string;
+          is_active: boolean;
+          published_date: string;
+          created_at?: string | null;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          description: string;
+          language: string;
+          is_active?: boolean;
+          published_date: string;
+          created_at?: string | null;
+        };
+        Update: Partial<Omit<Database["public"]["Tables"]["government_policies"]["Row"], "id">> & { id: string };
+        Relationships: [];
+      },
+      chat_messages: {
+        Row: {
+          id: string;
+          user_id: string;
+          message: string;
+          message_type: string;
+          media_url?: string | null;
+          created_at?: string | null;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          message: string;
+          message_type: string;
+          media_url?: string | null;
+          created_at?: string | null;
+        };
+        Update: Partial<Omit<Database["public"]["Tables"]["chat_messages"]["Row"], "id">> & { id: string };
+        Relationships: [];
+      },
+      favorites: {
+        Row: {
+          id: string;
+          shloka_id: string;
+          user_id: string;
+          created_at?: string | null;
+        };
+        Insert: {
+          id?: string;
+          shloka_id: string;
+          user_id: string;
+          created_at?: string | null;
+        };
+        Update: Partial<Omit<Database["public"]["Tables"]["favorites"]["Row"], "id">> & { id: string };
+        Relationships: [];
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_shloka_with_translations: {
+        Args: { p_shloka_id: string };
+        Returns: any;
+      };
+      update_weather_data: {
+        Args: { p_city: string; p_temperature: number; p_conditions: string; p_humidity: number; p_wind_speed: number };
+        Returns: any;
+      };
     }
     Enums: {
       [_ in never]: never
