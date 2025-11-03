@@ -3,6 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { chatAPI } from '@/integrations/supabase/api';
+import { openAIService } from '@/lib/openai-service';
+
+interface MessageType {
+  content: string;
+  role: "user" | "assistant";
+}
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { useTranslation } from "@/context/LanguageProvider";
 import { Bot, Cloud, FileText, Users, Send, AlertCircle, TrendingUp } from "lucide-react";
@@ -11,7 +17,10 @@ import { categoryAPI, shlokaAPI, translationAPI, policyAPI } from '@/integration
 const Dashboard = () => {
   const { t } = useTranslation();
   const [assistantInput, setAssistantInput] = useState("");
-  const [messages, setMessages] = useState<Array<{ role: 'user' | 'bot'; text: string }>>([]);
+    const [messages, setMessages] = useState<MessageType[]>([
+    { content: "Hello! I am your AI assistant. How can I help you today?", role: "assistant" },
+  ]);
+  const [isLoading, setIsLoading] = useState(false);
   const [showReport, setShowReport] = useState(false);
   const [sampleData, setSampleData] = useState<{ shlokas: any[]; policies: any[] }>({ shlokas: [], policies: [] });
 
@@ -37,44 +46,32 @@ const Dashboard = () => {
     }
   };
 
-  const mockAIAnswer = async (text: string) => {
-    const lower = text.toLowerCase();
-    if (lower.includes('weather') || lower.includes('rain') || lower.includes('temperature')) {
-      return 'The forecast shows pleasant weather for the next 3 days with temperatures between 24-30°C. Watch for heavy rain warnings in some regions.';
-    }
-    if (lower.includes('policy') || lower.includes('scheme') || lower.includes('benefit')) {
-      return 'You may be eligible for PM-KISAN and crop insurance schemes. Visit the Government Benefits section for details.';
-    }
-    if (lower.includes('join') && lower.includes('community')) {
-      return 'To join the community, click the Join Community button — you will be redirected to the forums.';
-    }
-    // Fallback: simple echo + helpful note
-    return `I hear you: "${text}". I can help with weather updates, government schemes, and basic farming advice.`;
-  };
-
   const handleSend = async () => {
     const text = assistantInput.trim();
     if (!text) return;
-    // add user message
-    setMessages(prev => [...prev, { role: 'user', text }]);
+    
+    setIsLoading(true);
+    setMessages(prev => [...prev, { role: 'user', content: text }]);
     setAssistantInput('');
 
-    // try to persist to backend (best-effort)
     try {
+      // Persist user message
       await chatAPI.sendMessage(text, 'text');
-    } catch (e) {
-      // ignore persistence errors for now
-      console.debug('chatAPI.sendMessage failed', e);
-    }
-
-    // get AI answer (mock or future integration)
-    const answer = await mockAIAnswer(text);
-    setMessages(prev => [...prev, { role: 'bot', text: answer }]);
-    // persist bot message
-    try {
+      
+      // Get AI response
+      const answer = await openAIService.chat(text);
+      setMessages(prev => [...prev, { role: 'assistant', content: answer }]);
+      
+      // Persist bot message
       await chatAPI.sendMessage(answer, 'text');
     } catch (e) {
-      console.debug('chatAPI.sendMessage (bot) failed', e);
+      console.error('Error in chat flow:', e);
+      setMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: "I'm having trouble connecting right now. Please try again in a moment." 
+      }]);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -116,7 +113,7 @@ const Dashboard = () => {
                     messages.map((m, i) => (
                       <div key={i} className={m.role === 'user' ? 'text-right' : 'text-left'}>
                         <div className={`inline-block p-2 rounded ${m.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                          {m.text}
+                          {m.content}
                         </div>
                       </div>
                     ))
