@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 interface DashboardCardProps {
   title: string;
-  titleHindi: string;
+  titleHindi?: string;
   icon: LucideIcon;
   children: ReactNode;
   iconColor?: string;
@@ -24,7 +24,7 @@ export const DashboardCard = ({
           <Icon className="h-8 w-8" />
         </div>
         <div>
-          <h3 className="text-xl font-bold">{titleHindi}</h3>
+          <h3 className="text-xl font-bold">{titleHindi ?? title}</h3>
           <p className="text-sm text-muted-foreground">{title}</p>
         </div>
       </div>

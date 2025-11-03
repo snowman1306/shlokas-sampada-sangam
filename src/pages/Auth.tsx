@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LanguageSelector } from "@/components/LanguageSelector";
+import { useTranslation } from "@/context/LanguageProvider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Shield, HelpCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -30,6 +31,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
   
   // Login state
   const [loginEmail, setLoginEmail] = useState("");
@@ -172,22 +174,22 @@ const Auth = () => {
           {/* Logo/Brand */}
           <div className="text-center mb-6">
             <div className="h-16 w-16 mx-auto rounded-full bg-gradient-cultural flex items-center justify-center mb-3">
-              <span className="text-white font-bold text-2xl">कृ</span>
+              <span className="text-white font-bold text-2xl">{t("nav.brandShort")}</span>
             </div>
-            <h1 className="text-2xl font-bold">किसान सेवा</h1>
-            <p className="text-muted-foreground">Farmer Portal</p>
+            <h1 className="text-2xl font-bold">{t("auth.title")}</h1>
+            <p className="text-muted-foreground">{t("auth.subtitle")}</p>
           </div>
 
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="login">लॉगिन / Login</TabsTrigger>
-              <TabsTrigger value="signup">साइन अप / Sign Up</TabsTrigger>
+              <TabsTrigger value="login">{t("auth.tabs.login")}</TabsTrigger>
+              <TabsTrigger value="signup">{t("auth.tabs.signup")}</TabsTrigger>
             </TabsList>
 
             <TabsContent value="login" className="space-y-4">
               <form onSubmit={handleLogin} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email">ईमेल / Email</Label>
+                  <Label htmlFor="email">{t("auth.labels.email")}</Label>
                   <Input 
                     id="email" 
                     type="email" 
@@ -198,7 +200,7 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password">पासवर्ड / Password</Label>
+                  <Label htmlFor="password">{t("auth.labels.password")}</Label>
                   <Input 
                     id="password" 
                     type="password" 
@@ -208,16 +210,14 @@ const Auth = () => {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full bg-primary" disabled={isLoading}>
-                  {isLoading ? "..." : "लॉगिन करें / Login"}
-                </Button>
+                <Button type="submit" className="w-full bg-primary" disabled={isLoading}>{isLoading ? "..." : t("auth.buttons.login")}</Button>
               </form>
             </TabsContent>
 
             <TabsContent value="signup" className="space-y-4">
               <form onSubmit={handleSignup} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">नाम / Name</Label>
+                  <Label htmlFor="name">{t("auth.labels.name")}</Label>
                   <Input 
                     id="name" 
                     placeholder="आपका नाम / Your name"
@@ -227,7 +227,7 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email-signup">ईमेल / Email</Label>
+                  <Label htmlFor="email-signup">{t("auth.labels.email")}</Label>
                   <Input 
                     id="email-signup" 
                     type="email" 
@@ -238,7 +238,7 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="dob">जन्म तिथि / Date of Birth</Label>
+                  <Label htmlFor="dob">{t("auth.labels.dob")}</Label>
                   <Input 
                     id="dob" 
                     type="date"
@@ -249,7 +249,7 @@ const Auth = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="state">राज्य / State</Label>
+                    <Label htmlFor="state">{t("auth.labels.state")}</Label>
                     <Input 
                       id="state" 
                       placeholder="State"
@@ -259,7 +259,7 @@ const Auth = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="city">शहर / City</Label>
+                    <Label htmlFor="city">{t("auth.labels.city")}</Label>
                     <Input 
                       id="city" 
                       placeholder="City"
@@ -270,7 +270,7 @@ const Auth = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="password-signup">पासवर्ड / Password</Label>
+                  <Label htmlFor="password-signup">{t("auth.labels.password")}</Label>
                   <Input 
                     id="password-signup" 
                     type="password" 
@@ -280,9 +280,7 @@ const Auth = () => {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full bg-primary" disabled={isLoading}>
-                  {isLoading ? "..." : "साइन अप करें / Sign Up"}
-                </Button>
+                <Button type="submit" className="w-full bg-primary" disabled={isLoading}>{isLoading ? "..." : t("auth.buttons.signup")}</Button>
               </form>
             </TabsContent>
           </Tabs>
@@ -290,36 +288,22 @@ const Auth = () => {
           {/* Help Resources */}
           <div className="mt-6 pt-6 border-t space-y-4">
             <div className="bg-secondary/20 rounded-lg p-4">
-              <h3 className="font-semibold mb-3 text-center">
-                📚 सहायता संसाधन / Help Resources
-              </h3>
+              <h3 className="font-semibold mb-3 text-center">📚 {t("auth.help.guideQuestion")}</h3>
               <div className="grid grid-cols-2 gap-2">
-                <Button variant="outline" size="sm" className="gap-2 h-auto py-3 flex-col">
-                  <Shield className="h-5 w-5" />
-                  <span className="text-xs">Privacy / गोपनीयता</span>
-                </Button>
-                <Button variant="outline" size="sm" className="gap-2 h-auto py-3 flex-col">
-                  <HelpCircle className="h-5 w-5" />
-                  <span className="text-xs">FAQs / प्रश्न</span>
-                </Button>
+                <Button variant="outline" size="sm" className="gap-2 h-auto py-3 flex-col"><Shield className="h-5 w-5" /><span className="text-xs">{t("auth.help.privacy")}</span></Button>
+                <Button variant="outline" size="sm" className="gap-2 h-auto py-3 flex-col"><HelpCircle className="h-5 w-5" /><span className="text-xs">{t("auth.help.faqs")}</span></Button>
               </div>
             </div>
 
             {/* Email Guide Link */}
             <div className="bg-primary/10 rounded-lg p-4 text-center">
-              <p className="text-sm font-medium mb-2">
-                ईमेल कैसे बनाएं? / How to create email?
-              </p>
-              <Button variant="default" size="sm" className="w-full">
-                📖 गाइड देखें / View Guide
-              </Button>
+              <p className="text-sm font-medium mb-2">{t("auth.help.guideQuestion")}</p>
+              <Button variant="default" size="sm" className="w-full">📖 {t("auth.buttons.viewGuide")}</Button>
             </div>
 
             {/* Contact Support */}
             <div className="text-center">
-              <Button variant="link" className="text-primary gap-2">
-                📞 सहायता के लिए संपर्क करें / Contact for Help
-              </Button>
+              <Button variant="link" className="text-primary gap-2">📞 {t("auth.buttons.contact")}</Button>
             </div>
           </div>
         </Card>

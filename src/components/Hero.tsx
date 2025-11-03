@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Sprout, Bot, Cloud, Users } from "lucide-react";
+import { useTranslation } from "@/context/LanguageProvider";
 
 export const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient */}
@@ -15,49 +18,39 @@ export const Hero = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Shloka */}
         <div className="mb-8 animate-fade-in">
-          <p className="text-white/90 text-2xl sm:text-3xl md:text-4xl font-serif italic mb-2">
-            "शिवकान्त शम्भो..."
-          </p>
-          <p className="text-white/80 text-sm sm:text-base">
-            In harmony with nature and the wisdom of our ancestors
-          </p>
+          <p className="text-white/90 text-2xl sm:text-3xl md:text-4xl font-serif italic mb-2">{t("hero.shloka")}</p>
+          <p className="text-white/80 text-sm sm:text-base">{t("hero.subtitle")}</p>
         </div>
 
         {/* Main heading */}
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">
-          किसान सशक्तिकरण
+          {t("hero.titleLine1")}
           <br />
-          <span className="text-white/95">Farmer Empowerment</span>
+          <span className="text-white/95">{t("hero.titleLine2")}</span>
         </h1>
 
-        <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto">
-          Your journey towards prosperous farming begins here. Ask, learn, and grow with your community.
-        </p>
+        <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto">{t("hero.titleLine2")}</p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6">
-            शुरू करें / Get Started
-          </Button>
-          <Button size="lg" variant="outline" className="bg-white/10 text-white border-white hover:bg-white/20 text-lg px-8 py-6">
-            और जानें / Learn More
-          </Button>
+          <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6">{t("hero.getStarted")}</Button>
+          <Button size="lg" variant="outline" className="bg-white/10 text-white border-white hover:bg-white/20 text-lg px-8 py-6">{t("hero.learnMore")}</Button>
         </div>
 
         {/* Feature Icons */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {[
-            { icon: Bot, label: "AI सहायक / AI Assistant" },
-            { icon: Cloud, label: "मौसम चेतावनी / Weather Alerts" },
-            { icon: Sprout, label: "फसल सलाह / Crop Advice" },
-            { icon: Users, label: "समुदाय / Community" },
+            { icon: Bot, key: "hero.features.ai" },
+            { icon: Cloud, key: "hero.features.weather" },
+            { icon: Sprout, key: "hero.features.crop" },
+            { icon: Users, key: "hero.features.community" },
           ].map((feature, index) => (
             <div
               key={index}
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
             >
               <feature.icon className="h-12 w-12 text-white mx-auto mb-3" />
-              <p className="text-white text-sm font-medium">{feature.label}</p>
+              <p className="text-white text-sm font-medium">{t(feature.key)}</p>
             </div>
           ))}
         </div>
